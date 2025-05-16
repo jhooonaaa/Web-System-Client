@@ -8,10 +8,11 @@ function TransactionList() {
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [bookSearchQuery, setBookSearchQuery] = useState('');
+  const apiUrl = import.meta.env.VITE_ENDPOINT_URL;
 
   useEffect(() => {
     const fetchTransactions = () => {
-      axios.get('http://localhost:3000/transactions')
+      axios.get(`${apiUrl}/transactions`)
         .then(response => {
           setTransactions(response.data);
           setFilteredTransactions(response.data);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FaTimes, FaBook, FaUser, FaTag, FaCalendarAlt, FaBoxes } from 'react-icons/fa'; // Import relevant icons
 
 const AddBookModal = ({ onClose, onAdded }) => {
+  const apiUrl = import.meta.env.VITE_ENDPOINT_URL;
   const [bookData, setBookData] = useState({
     title: '',
     author: '',
@@ -20,7 +21,7 @@ const AddBookModal = ({ onClose, onAdded }) => {
   const handleSubmit = async () => {
     if (!bookData.title.trim()) return;
     try {
-      await axios.post('http://localhost:3000/add-book', bookData);
+      await axios.post(`${apiUrl}/add-book`, bookData);
       onAdded();
       onClose();
     } catch (error) {

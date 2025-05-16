@@ -15,6 +15,7 @@ function AdminPage() {
   const [editingBook, setEditingBook] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_ENDPOINT_URL;
 
   useEffect(() => {
     fetchBooks();
@@ -23,14 +24,14 @@ function AdminPage() {
   }, []);
 
   const fetchBooks = async () => {
-    const res = await fetch('http://localhost:3000/books');
+    const res = await fetch(`${apiUrl}/books`);
     const data = await res.json();
     setBooks(data);
   };
 
   const handleDelete = async (bookId) => {
     try {
-      await axios.post('http://localhost:3000/delete-book', { book_id: bookId });
+      await axios.post(`${apiUrl}/delete-book`, { book_id: bookId });
       setSuccessMessage("Deleted successfully!");
       setTimeout(() => setSuccessMessage(''), 3000);
       fetchBooks();
@@ -56,7 +57,7 @@ function AdminPage() {
     if (!editingBook.title.trim()) return;
 
     try {
-      await axios.post('http://localhost:3000/update-book', {
+      await axios.post(`${apiUrl}/update-book`, {
         book_id: editingBook.book_id,
         title: editingBook.title,
         author: editingBook.author,

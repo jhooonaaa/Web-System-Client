@@ -5,6 +5,7 @@ import { FaUser, FaLock, FaKey, FaUserPlus, FaSignInAlt, FaUserEdit } from "reac
 
 function LoginPage({ closeLogin }) {
   const navigate = useNavigate();
+const apiUrl = import.meta.env.VITE_ENDPOINT_URL;
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +18,7 @@ function LoginPage({ closeLogin }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/login', {
+      const response = await axios.post(`${apiUrl}/login`, {
         username,
         password,
         adminCode,
@@ -45,7 +46,7 @@ function LoginPage({ closeLogin }) {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/register', {
+      const response = await axios.post(`${apiUrl}/register`, {
         username,
         password,
         full_name: fullName

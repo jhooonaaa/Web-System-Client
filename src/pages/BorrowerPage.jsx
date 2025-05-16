@@ -29,7 +29,7 @@ function BorrowerPage() {
   const [showHistory, setShowHistory] = useState(false);
   const [warningMessage, setWarningMessage] = useState('');
   const [borrowQuantity, setBorrowQuantity] = useState(1);
-
+ const apiUrl = import.meta.env.VITE_ENDPOINT_URL;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,14 +48,14 @@ function BorrowerPage() {
   }, []);
 
   const fetchBooks = async () => {
-    const res = await fetch('http://localhost:3000/books');
+    const res = await fetch(`${apiUrl}/books`);
     const data = await res.json();
     setBooks(data);
   };
 
   const fetchBorrowedBooks = async (username) => {
     try {
-      const res = await axios.get(`http://localhost:3000/borrowed-books/${username}`);
+      const res = await axios.get(`${apiUrl}/borrowed-books/${username}`);
       if (res.data.success) setBorrowedBooks(res.data.borrowedBooks);
       else setBorrowedBooks([]);
     } catch (error) {
@@ -89,7 +89,7 @@ function BorrowerPage() {
     }
 
     try {
-      const res = await axios.post('http://localhost:3000/borrow-book', {
+      const res = await axios.post(`${apiUrl}/borrow-book`, {
         username,
         book_id: borrowModal.book_id,
         return_date: borrowModal.returnDate,
@@ -121,7 +121,7 @@ function BorrowerPage() {
 
   const handleReturn = async (borrowId) => {
     try {
-      await axios.post('http://localhost:3000/return-book', {
+      await axios.post(`${apiUrl}/return-book`, {
         borrow_id: borrowId,
       });
 
