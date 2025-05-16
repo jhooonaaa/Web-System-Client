@@ -82,11 +82,6 @@ function BorrowerPage() {
       return;
     }
 
-    if (unreturnedCount === 1) {
-      setWarningMessage("You already have one unreturned book. Borrowing more may lead to your account being locked.");
-      setBorrowModal(null);
-      setTimeout(() => setWarningMessage(''), 4000);
-    }
 
     try {
       const res = await axios.post(`${apiUrl}/borrow-book`, {
