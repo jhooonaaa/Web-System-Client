@@ -343,7 +343,14 @@ function BorrowerPage() {
             min="1"
             max={selectedBook.quantity}
             value={borrowQuantity}
-            onChange={(e) => setBorrowQuantity(Number(e.target.value))}
+            onChange={(e) => {
+  const value = e.target.value;
+  if (value === '') {
+    setBorrowQuantity('');
+  } else if (/^\d+$/.test(value)) {
+    setBorrowQuantity(parseInt(value, 10));
+  }
+}}
             placeholder="Quantity"
             className="px-4 py-2 w-full rounded-md border border-gray-300 bg-white/70 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#a67c52] transition"
           />
