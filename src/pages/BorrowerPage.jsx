@@ -313,60 +313,75 @@ function BorrowerPage() {
 
       {borrowModal && selectedBook && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-beige bg-opacity-60 backdrop-blur-md">
-    <div className="bg-[#FFF8F0] p-6 rounded-2xl shadow-xl w-1/3 font-serif text-[#5E503F]">
+    <div className="bg-white/80 backdrop-blur-xl border border-[#c0a16b] rounded-2xl p-6 w-[90%] max-w-md shadow-2xl relative transition-all font-serif text-[#5E503F]">
       
-      {/* Modal Title */}
-      <h3 className="text-2xl font-bold mb-4">📖 Borrow Book</h3>
-
-      {/* Book Info */}
-      <p className="mb-4 p-3 border border-[#E6CCB2] bg-white rounded-lg shadow-sm">
-        <strong>Book:</strong> {selectedBook ? selectedBook.title : 'Loading...'}
-      </p>
-
-      {/* Quantity Input */}
-      <label className="block mb-5">
-        <span className="block mb-1 text-sm">Quantity:</span>
-        <input
-          type="number"
-          min="1"
-          max={selectedBook.quantity}
-          value={borrowQuantity}
-          onChange={(e) => setBorrowQuantity(Number(e.target.value))}
-          className="w-full p-2 border border-[#DDBEA9] rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#B7B7A4]"
-        />
-      </label>
-
-      {/* Return Date Input */}
-      <label className="block mb-6">
-        <span className="block mb-1 text-sm">Return Date:</span>
-        <input
-          type="date"
-          className="w-full p-2 border border-[#DDBEA9] rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#B7B7A4]"
-          value={borrowModal.returnDate || ''}
-          onChange={(e) =>
-            setBorrowModal({ ...borrowModal, returnDate: e.target.value })
-          }
-        />
-      </label>
-
-      {/* Buttons */}
-      <div className="flex justify-between">
+      {/* Close Button */}
       <button
-                onClick={handleBorrow}
-                className="bg-[#6B705C] text-white px-4 py-2 rounded-full hover:bg-[#588157]"
-              >
-                <FaBookOpen className="inline mr-1" /> Borrow
-              </button>
-              <button
-                onClick={() => setBorrowModal(null)}
-                className="bg-gray-500 text-white px-4 py-2 rounded-full hover:bg-gray-400"
-              >
-                <FaTimes className="inline mr-1" /> Cancel
-              </button>
+        onClick={() => setBorrowModal(null)}
+        className="absolute top-4 right-5 text-[#7c5e3b] text-2xl hover:scale-110 transition-transform"
+      >
+        ✖
+      </button>
+
+      {/* Modal Title */}
+      <h2 className="text-3xl text-center mb-6">📖 Borrow Book</h2>
+
+      <div className="flex flex-col gap-6">
+        {/* Book Title Info */}
+        <div className="flex items-center gap-4">
+          <FaBookOpen className="text-[#7c5e3b] text-xl" />
+          <p className="p-2 w-full bg-white/70 border border-[#DDBEA9] rounded-md shadow-inner">
+            {selectedBook?.title}
+          </p>
+        </div>
+
+        {/* Quantity Input */}
+        <div className="flex items-center gap-4">
+          <FaBoxes className="text-[#7c5e3b] text-xl" />
+          <input
+            type="number"
+            min="1"
+            max={selectedBook.quantity}
+            value={borrowQuantity}
+            onChange={(e) => setBorrowQuantity(Number(e.target.value))}
+            placeholder="Quantity"
+            className="px-4 py-2 w-full rounded-md border border-gray-300 bg-white/70 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#a67c52] transition"
+          />
+        </div>
+
+        {/* Return Date Input */}
+        <div className="flex items-center gap-4">
+          <FaCalendarAlt className="text-[#7c5e3b] text-xl" />
+          <input
+            type="date"
+            value={borrowModal.returnDate || ''}
+            onChange={(e) =>
+              setBorrowModal({ ...borrowModal, returnDate: e.target.value })
+            }
+            className="px-4 py-2 w-full rounded-md border border-gray-300 bg-white/70 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#a67c52] transition"
+          />
+        </div>
+
+        {/* Buttons */}
+        <div className="flex justify-between gap-4 pt-6">
+          <button
+            onClick={handleBorrow}
+            className="bg-[#4a3f2f] text-white font-semibold px-6 py-2 rounded-md hover:bg-green-700 transition duration-200 shadow-md"
+          >
+            <FaBookOpen className="inline mr-1" /> Borrow
+          </button>
+          <button
+            onClick={() => setBorrowModal(null)}
+            className="bg-[#4a3f2f] text-white px-6 py-2 rounded-md hover:bg-gray-600 transition duration-200"
+          >
+            <FaTimes className="inline mr-1" /> Cancel
+          </button>
+        </div>
       </div>
     </div>
   </div>
 )}
+
 
     </div>
   );
