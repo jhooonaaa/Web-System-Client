@@ -79,7 +79,7 @@ function AdminPage() {
 
   return (
     <div className="min-h-screen bg-[#F2F4EE]">
-      <nav className="bg-[#c0a16b] text-white px-6 py-4 flex justify-between items-center shadow-md">
+     <nav className="bg-[#c0a16b] text-white px-4 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 shadow-md">
         <h1 className="text-2xl font-serif tracking-wide">📚 Library Admin Panel</h1>
         <div className="flex items-center space-x-4">
           <button
@@ -96,7 +96,7 @@ function AdminPage() {
           </button>
           <button
             onClick={handleLogout}
-            className="bg-[#7F674C] px-4 py-2 rounded-md text-white hover:bg-red-500 transition"
+            className="bg-[#7F674C] px-2 py-1 rounded-md text-white hover:bg-red-500 transition"
           >
             <FaSignOutAlt className="inline mr-2" /> Logout
           </button>
@@ -110,7 +110,7 @@ function AdminPage() {
               <h2 className="text-3xl font-serif text-[#4a3f2f]">📖 Book List</h2>
               <button
                 onClick={() => setShowAddModal(true)}
-                className="bg-[#4a3f2f] text-white font-medium px-4 py-2 rounded-md hover:bg-red-500 transition"
+                className="bg-[#4a3f2f] text-white font-medium px-2 py-1 rounded-md hover:bg-red-500 transition"
               >
                 <FaPlus className="inline mr-2" /> Add Book
               </button>
@@ -122,7 +122,8 @@ function AdminPage() {
               </div>
             )}
 
-            <table className="w-full border bg-white/80 shadow-lg backdrop-blur-md rounded-xl overflow-hidden">
+            <div className="overflow-x-auto">
+  <table className="min-w-full bg-white/80 shadow-lg backdrop-blur-md rounded-xl">
               <thead className="bg-[#f7f3ee] text-[#4a3f2f] font-semibold text-sm">
                 <tr>
                   <th className="py-2 px-3 border"><FaBook className="inline mr-1" /> Title</th>
@@ -161,6 +162,7 @@ function AdminPage() {
                 ))}
               </tbody>
             </table>
+            </div>
 
             {showAddModal && (
               <AddBookModal
@@ -171,7 +173,7 @@ function AdminPage() {
 
            {editingBook && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-beige bg-opacity-60 backdrop-blur-md">
-    <div className="bg-white/80 backdrop-blur-xl border border-[#c0a16b] rounded-2xl p-8 w-[95%] max-w-lg shadow-2xl relative transition-all">
+  <div className="bg-white/80 backdrop-blur-xl border border-[#c0a16b] rounded-2xl p-6 w-[90%] max-w-md shadow-2xl relative transition-all">
       <button
         onClick={() => setEditingBook(null)}
         className="absolute top-4 right-5 text-[#7c5e3b] text-2xl hover:scale-110 transition-transform"

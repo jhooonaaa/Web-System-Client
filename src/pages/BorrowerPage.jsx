@@ -159,7 +159,7 @@ function BorrowerPage() {
     <div className="min-h-screen bg-[#F2F4EE] font-serif text-[#5E503F]">
       <nav className="bg-[#A68A64] text-white px-6 py-4 flex justify-between items-center shadow-md rounded-b-xl">
         <h1 className="text-2xl font-bold">📚 Library Borrower Panel</h1>
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-wrap gap-2 justify-center sm:justify-end items-center mt-2 sm:mt-0">
           <button
             onClick={() => setActiveTab('home')}
             className={`hover:underline ${activeTab === 'home' ? 'underline font-bold' : ''}`}
@@ -190,13 +190,13 @@ function BorrowerPage() {
 
         {activeTab === 'home' && (
           <>
-            <div className="flex justify-between mb-4">
+           <div className="flex flex-col sm:flex-row justify-between gap-4 mb-4">
               <div className="flex items-center">
                 <FaSearch className="mr-2" />
                 <input
                   type="text"
                   placeholder="Search books..."
-                  className="p-2 border rounded w-1/2"
+                  className="p-2 border rounded w-full sm:w-64"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -212,8 +212,8 @@ function BorrowerPage() {
                 <option value="published_year">Year</option>
               </select>
             </div>
-
-            <table className="w-full text-sm bg-white shadow-md rounded-xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-sm bg-white shadow-md rounded-xl">
               <thead className="bg-[#EADBC8] text-[#5E503F]">
                 <tr>
                   <th className="p-3"><FaBookOpen className="inline mr-1" /> Title</th>
@@ -252,6 +252,7 @@ function BorrowerPage() {
                 ))}
               </tbody>
             </table>
+                </div>
           </>
         )}
 
@@ -267,8 +268,8 @@ function BorrowerPage() {
                 <FaHistory className="inline ml-2" />
               </button>
             </div>
-
-            <table className="w-full text-sm bg-white shadow-md rounded-xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-sm bg-white shadow-md rounded-xl">
               <thead className="bg-[#EADBC8] text-[#5E503F]">
                 <tr>
                   <th className="p-3"><FaBookOpen className="inline mr-1" /> Title</th>
@@ -305,6 +306,7 @@ function BorrowerPage() {
                 ))}
               </tbody>
             </table>
+            </div>
           </>
         )}
       </div>

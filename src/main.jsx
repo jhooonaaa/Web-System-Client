@@ -2,7 +2,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './global.css';
-import FrontPage from './FrontPage.jsx';             // RENAMED from App.jsx
+import FrontPage from './FrontPage.jsx';            
 import BorrowerPage from './pages/BorrowerPage.jsx';
 import AdminPage from './pages/AdminPage.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
