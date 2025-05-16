@@ -15,7 +15,7 @@ import {
   FaInfoCircle,
   FaBoxOpen,
   FaPlay,
-  FaUndo
+  FaUndo, FaBoxes
 } from 'react-icons/fa'; // All required icons
 
 function BorrowerPage() {
@@ -311,7 +311,7 @@ function BorrowerPage() {
         )}
       </div>
 
-      {borrowModal && selectedBook && (
+     {borrowModal && selectedBook && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-beige bg-opacity-60 backdrop-blur-md">
     <div className="bg-white/80 backdrop-blur-xl border border-[#c0a16b] rounded-2xl p-6 w-[90%] max-w-md shadow-2xl relative transition-all font-serif text-[#5E503F]">
       
